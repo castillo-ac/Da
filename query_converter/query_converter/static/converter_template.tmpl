@@ -1,0 +1,96 @@
+<head>
+    <style>
+        {{ css | safe }}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+</head>
+
+<body>
+    <div id="wrapper" style="height: 2000px; overflow: auto;">
+        <div id="navbar">
+            <div id="title">
+                <h1>Legacy to Opal converter</h1>
+                <ol>
+                    <li>Put T-SQL query in the input box</li>
+                    <li>Check the output query</li>
+                    <li>Switch to "Errors" tab if parsing was incomplete</li>
+                </ol>
+            </div>
+            <div id="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Procter_%26_Gamble_logo.svg">
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="input">
+                <pre><code class="language-sql">{{ legacy_query | safe }}</code></pre>
+            </div>
+            <div id="output">
+                <div id="output-container">
+                    <pre><code>{{ converted_query | safe }}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="options">
+                <div class="option" onclick="showSection('columns', this)">Columns ({{ columns_count }})</div>
+                <div class="option" onclick="showSection('comments', this)">Comments ({{ comments_count }})</div>
+                <div class="option" onclick="showSection('tables', this)">Tables ({{ tables_count }})</div>
+                <div class="option" onclick="showSection('errors', this)">Errors ({{ errors_count }})</div>
+                <div class="option" onclick="showSection('full-mapping', this)">Columns Mapping File</div>
+            </div>
+            <div id="extras">
+                <div id="columns-section" style="display:block;">{{ columns_html | safe }}</div>
+                <div id="tables-section" style="display:none;">{{ tables_html | safe }}</div>
+                <div id="comments-section" style="display:none;">{{ comments_html | safe }}</div>
+                <div id="errors-section" style="display:none;">{{ errors_html | safe }}</div>
+                <div id="full-mapping-section" style="display:none;">
+                    {{ mapping_html | safe }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
+    <script>
+        const firstOption = document.querySelector('.option');
+            if (firstOption) {
+                firstOption.classList.add('active');
+            }
+
+        function showSection(section, elem) {
+                document.getElementById('comments-section').style.display = section === 'comments' ? 'block' : 'none';
+                document.getElementById('tables-section').style.display = section === 'tables' ? 'block' : 'none';
+                document.getElementById('errors-section').style.display = section === 'errors' ? 'block' : 'none';
+                document.getElementById('full-mapping-section').style.display = section === 'full-mapping' ? 'block' : 'none';
+                document.getElementById('columns-section').style.display = section === 'columns' ? 'block' : 'none';
+
+                const options = document.querySelectorAll('.option');
+                options.forEach(o => o.classList.remove('active'));
+                elem.classList.add('active');
+        }
+        new DataTable('#mapping-table', {
+            search: {
+                return: true
+            },
+            columns: [
+                { data: 'Legacy db' },
+                { data: 'Legacy schema' },
+                { data: 'Legacy table' },
+                { data: 'Legacy column' },
+                { data: 'CDL-STC schema' },
+                { data: 'CDL-STC table' },
+                { data: 'CDL-STC column' },
+                { data: 'Comment' },
+
+            ],
+            scrollX: true
+        });
+        
+    </script>
+</body>

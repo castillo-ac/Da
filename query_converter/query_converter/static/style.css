@@ -1,0 +1,213 @@
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: #ffffff;
+        color: #003da5;
+        overflow-y: scroll;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #f0f8ff;
+        padding: 8px;
+        border-radius: 4px;
+        overflow-x: auto;
+        border: 1px solid #00a3e0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #00a3e0;
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background-color: #003da5;
+        color: #ffffff;
+    }
+
+    #navbar {
+        background: #003da5;
+        padding: 10px 20px;
+        border-bottom: 4px solid #00a3e0;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #navbar h1 {
+        margin: 0;
+        color: #ffffff;
+    }
+
+    #logo img {
+        height: 125px;
+        padding-left: 20px;
+    }
+
+    #main {
+        display: flex;
+        gap: 5px;
+        border-bottom: 4px solid #003da5;
+        min-height: 400px;
+    }
+
+    #input,
+    #output {
+        flex: 1;
+        border: 2px solid #003da5;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: #ffffff;
+        height: 100% !important;
+    }
+
+    #footer {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        height: 500px;
+    }
+
+    #options {
+        display: flex;
+        flex-direction: column;
+        border-right: 2px solid #003da5;
+        background-color: #00a3e0;
+    }
+
+    .option {
+        flex: 1;
+        border-bottom: 2px solid #003da5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: #00a3e0;
+        color: #ffffff;
+        font-weight: bold;
+        min-height: 50px;
+        max-height: 50px;
+    }
+
+    .option:hover {
+        background-color: #003da5;
+        color: #ffffff;
+    }
+
+    #extras {
+        border: 2px solid #003da5;
+        padding: 5px;
+        overflow-y: auto;
+        background-color: #ffffff;
+    }
+
+    .option.active {
+        background-color: #003da5;
+        color: white;
+    }
+
+    #mapping-table_wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .dataTables_filter {
+        margin-bottom: 8px;
+    }
+
+    .dataTables_filter label {
+        font-weight: bold;
+        color: #003da5;
+    }
+
+    .dataTables_filter input {
+        border: 2px solid #00a3e0;
+        border-radius: 6px;
+        padding: 4px 8px;
+        margin-left: 6px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .dataTables_filter input:focus {
+        border-color: #003da5;
+        box-shadow: 0 0 5px rgba(0, 61, 165, 0.5);
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        border: 1px solid #00a3e0;
+        background: #ffffff;
+        color: #003da5 !important;
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin: 0 2px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #003da5;
+        color: #ffffff !important;
+    }
+
+
+    #output-container pre,
+    #output-container code {
+        color: black;
+        background: #f5f2f0;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        font-size: 1em;
+        line-height: 1.5;
+        white-space: pre;
+        word-break: normal;
+        padding: 1em;
+        margin: .5em 0;
+        overflow: auto;
+        border-radius: 0.3em;
+    }
+
+    /* Inline code in output container */
+    #output-container code {
+        padding: 0.1em;
+    }
+
+    /* Comments */
+    #output-container .token.comment,
+    #output-container .token.prolog,
+    #output-container .token.doctype,
+    #output-container .token.cdata {
+        color: slategray;
+    }
+
+    /* Strings, keywords, numbers, operators, etc. */
+    #output-container .token.string {
+        color: #690;
+    }
+
+    #output-container .token.keyword {
+        color: #07a;
+    }
+
+    #output-container .token.number {
+        color: #905;
+    }
+
+    #output-container .token.operator {
+        color: #9a6e3a;
+    }
+
+    /* Highlighted error columns */
+    #output-container .error-column {
+        color: red;
+        font-weight: bold;
+    }
